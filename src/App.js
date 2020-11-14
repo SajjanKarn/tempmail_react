@@ -13,7 +13,7 @@ const App = () => {
   const [mailInput, setMailInput] = useState("");
   const [mailMessages, setMailMessages] = useState([]);
 
-  const generateMail = (username = "abchello") => {
+  const generateMail = (username = "abcexample") => {
     const email1 = new TM(username); // It will create an address like "temp-email@xxxxxx.xxx"
 
     // Waiting for the email to be ready (recommended)
@@ -21,6 +21,7 @@ const App = () => {
       if (!error) {
         console.log(`Email address is ${email}`);
         setMailInput(email);
+        setMailMessages([]);
 
         // Getting email list
         email1.getEmails((emails, error) => {
@@ -33,8 +34,10 @@ const App = () => {
         setInterval(() => {
           email1.getEmails((emails, error, change) => {
             if (!error) {
-              if (change) console.log("New mail !", emails);
-              setMailMessages(emails);
+              if (change) {
+                console.log("New mail !", emails);
+                setMailMessages(emails.reverse());
+              }
             } else console.error(error);
           });
         }, 1000);
@@ -43,12 +46,16 @@ const App = () => {
   };
 
   useEffect(() => {
-    const RandomUsername = `${Math.floor(Math.random() * 100)}abchelloworld`;
-    generateMail(`${RandomUsername}`);
+    generateMail(`${Math.floor(Math.random() * 1000)}example`);
   }, []);
 
   const handleOnSubmitChange = (event) => {
     event.preventDefault();
+
+    if (!mailInput) {
+      alert("Please enter something!");
+      return;
+    }
 
     generateMail(mailInput);
   };
@@ -62,9 +69,9 @@ const App = () => {
           <form className="row" onSubmit={handleOnSubmitChange}>
             <div className="col-lg-10 col-md-8">
               <InputField
-                label="Custom-Mail"
+                label="Enter Username"
                 id="mailinput"
-                placeholder="abc@example.ru"
+                placeholder="abc-hello"
                 name="mailInput"
                 value={mailInput}
                 onChange={(e) => setMailInput(e.target.value)}
@@ -78,7 +85,7 @@ const App = () => {
                 justifyContent: "center",
               }}
             >
-              <ButtonInput text="Generate" type="submit" />
+              <ButtonInput variant="info" text="Generate" type="submit" />
             </div>
           </form>
         </div>
