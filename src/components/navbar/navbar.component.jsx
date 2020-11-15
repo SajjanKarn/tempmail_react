@@ -1,11 +1,12 @@
+import { Link } from "react-router-dom";
 import "./navbar.styles.css";
 
 const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-      <a className="navbar-brand" href="/">
+      <Link className="navbar-brand" to="/">
         TempMail
-      </a>
+      </Link>
     </nav>
   );
 };
