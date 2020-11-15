@@ -25,7 +25,7 @@ const HomePage = () => {
     // Waiting for the email to be ready (recommended)
     email1.ready((email, error) => {
       if (!error) {
-        console.log(`Email address is ${email}`);
+        // console.log(`Email address is ${email}`);
         setUserInputAndMessages((prevValue) => ({
           ...prevValue,
           mailInput: email,
@@ -35,7 +35,7 @@ const HomePage = () => {
         // Getting email list
         email1.getEmails((emails, error) => {
           if (!error) {
-            console.log("Email list :", emails);
+            // console.log("Email list :", emails);
           } else console.error(error);
         });
 
@@ -44,7 +44,7 @@ const HomePage = () => {
           email1.getEmails((emails, error, change) => {
             if (!error) {
               if (change) {
-                console.log("New mail !", emails);
+                // console.log("New mail !", emails);
                 setUserInputAndMessages((prevValue) => ({
                   ...prevValue,
                   mailMessages: emails.reverse(),
