@@ -59,7 +59,7 @@ const Card = ({ header, title, body, mail_html }) => {
             dangerouslySetInnerHTML={{ __html: mail_html }}
           ></div>
         </Modal>
-        <ButtonInput variant="success" text="View" onClick={openModal} />
+        <ButtonInput variant="info" text="View" onClick={openModal} />
       </div>
     </div>
   );

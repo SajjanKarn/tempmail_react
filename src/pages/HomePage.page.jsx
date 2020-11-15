@@ -7,6 +7,8 @@ import Navbar from "../components/navbar/navbar.component";
 
 import UserInputandMessage from "../contexts/user-input.context";
 
+import "./Homepage.style.css";
+
 const TM = require("temp-mail-api");
 
 const HomePage = () => {
@@ -104,21 +106,30 @@ const HomePage = () => {
         </form>
       </div>
 
-
-
       <div className="container-fluid my-3" style={{ paddingBottom: "80px" }}>
-        <h3>Recent Mails</h3>
-        {userInputAndMessage.mailMessages.map((mail) => {
-          return (
-            <Card
-              header={mail.mail_from}
-              title={mail.mail_subject}
-              body={mail.mail_text}
-              mail_html={mail.mail_html}
-              key={mail.mail_id}
-            />
-          );
-        })}
+        <div className="my-3">
+          <h3>Recent Mails </h3>
+          <span style={{ fontSize: "20px" }}>
+            Total Mails:{" "}
+            <span class="badge badge-pill badge-danger">
+              {userInputAndMessage.mailMessages.length}
+            </span>
+          </span>
+        </div>
+
+        <div className="cards-collections">
+          {userInputAndMessage.mailMessages.map((mail) => {
+            return (
+              <Card
+                header={mail.mail_from}
+                title={mail.mail_subject}
+                body={mail.mail_text}
+                mail_html={mail.mail_html}
+                key={mail.mail_id}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );

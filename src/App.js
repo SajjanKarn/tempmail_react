@@ -4,7 +4,6 @@ import { Switch, Route } from "react-router-dom";
 import Footer from "./components/footer/footer.component";
 
 import HomePage from "./pages/HomePage.page";
-import RenderMailContent from "./pages/RenderMailContent.page";
 
 import UserInputandMessage from "./contexts/user-input.context";
 
